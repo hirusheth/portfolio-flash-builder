@@ -191,9 +191,9 @@ function Index() {
         ))}
       </section>
 
-      <Section title="Experience">
+      <Section title="Experience" delay={0.25}>
         <ol className="space-y-10">
-          {experience.map((job) => (
+          {experience.map((job, i) => (
             <li key={job.company} className="relative pl-5">
               <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-primary" />
               <div className="flex flex-wrap items-baseline justify-between gap-x-4">
