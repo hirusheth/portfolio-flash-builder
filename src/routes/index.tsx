@@ -268,9 +268,17 @@ function Index() {
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  delay = 0,
+  children,
+}: {
+  title: string;
+  delay?: number;
+  children: React.ReactNode;
+}) {
   return (
-    <section className="mt-16">
+    <section className="rise mt-16" style={{ animationDelay: `${delay}s` }}>
       <h2 className="rule-label mb-6">{title}</h2>
       {children}
     </section>
