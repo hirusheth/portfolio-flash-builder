@@ -126,6 +126,8 @@ function Index() {
   const [activeExperience, setActiveExperience] = useState(0);
   const activeJob = experience[activeExperience];
 
+  if (!activeJob) return null;
+
   return (
     <main className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 sm:px-8 md:pt-24">
       <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[26rem]" aria-hidden />
