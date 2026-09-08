@@ -114,11 +114,22 @@ const stats = [
   { value: "4", label: "Regional brands, one codebase" },
 ];
 
+const terminalLines = [
+  { prompt: true, text: "whoami" },
+  { prompt: false, text: "hiren.sheth — principal engineer" },
+  { prompt: true, text: "deploy --region ap-south --brands 4" },
+  { prompt: false, text: "✓ zero downtime · 100K req/day · live" },
+];
+
 function Index() {
   return (
-    <main className="mx-auto max-w-3xl px-6 pb-24 pt-16 sm:px-8 md:pt-24">
-      <header className="border-b border-border pb-12">
-        <p className="rule-label">Hyderabad, India</p>
+    <main className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 sm:px-8 md:pt-24">
+      <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[26rem]" aria-hidden />
+      <header className="rise border-b border-border pb-12">
+        <div className="flex items-center gap-2">
+          <span className="pulse-live inline-block h-2 w-2 rounded-full bg-primary" />
+          <p className="rule-label">Hyderabad, India · systems online</p>
+        </div>
         <h1 className="mt-5 font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-foreground sm:text-7xl">
           Hiren Sheth
         </h1>
