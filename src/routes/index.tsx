@@ -194,7 +194,11 @@ function Index() {
       <Section title="Experience" delay={0.25}>
         <ol className="space-y-10">
           {experience.map((job, i) => (
-            <li key={job.company} className="relative pl-5">
+            <li
+              key={job.company}
+              className="rise relative pl-5"
+              style={{ animationDelay: `${0.3 + i * 0.12}s` }}
+            >
               <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-primary" />
               <div className="flex flex-wrap items-baseline justify-between gap-x-4">
                 <h3 className="font-[family-name:var(--font-display)] text-2xl text-foreground">
@@ -217,7 +221,7 @@ function Index() {
         </ol>
       </Section>
 
-      <Section title="Core competencies">
+      <Section title="Core competencies" delay={0.35}>
         <ul className="flex flex-wrap gap-2">
           {competencies.map((c) => (
             <li
@@ -230,7 +234,7 @@ function Index() {
         </ul>
       </Section>
 
-      <Section title="Skills">
+      <Section title="Skills" delay={0.4}>
         <dl className="divide-y divide-border border-y border-border">
           {skills.map((s) => (
             <div key={s.label} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
@@ -241,7 +245,7 @@ function Index() {
         </dl>
       </Section>
 
-      <Section title="Education">
+      <Section title="Education" delay={0.45}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4">
           <h3 className="font-[family-name:var(--font-display)] text-2xl text-foreground">
             B.E. Computer Science
