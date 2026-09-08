@@ -114,11 +114,22 @@ const stats = [
   { value: "4", label: "Regional brands, one codebase" },
 ];
 
+const terminalLines = [
+  { prompt: true, text: "whoami" },
+  { prompt: false, text: "hiren.sheth — principal engineer" },
+  { prompt: true, text: "deploy --region ap-south --brands 4" },
+  { prompt: false, text: "✓ zero downtime · 100K req/day · live" },
+];
+
 function Index() {
   return (
-    <main className="mx-auto max-w-3xl px-6 pb-24 pt-16 sm:px-8 md:pt-24">
-      <header className="border-b border-border pb-12">
-        <p className="rule-label">Hyderabad, India</p>
+    <main className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 sm:px-8 md:pt-24">
+      <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[26rem]" aria-hidden />
+      <header className="rise border-b border-border pb-12">
+        <div className="flex items-center gap-2">
+          <span className="pulse-live inline-block h-2 w-2 rounded-full bg-primary" />
+          <p className="rule-label">Hyderabad, India · systems online</p>
+        </div>
         <h1 className="mt-5 font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-foreground sm:text-7xl">
           Hiren Sheth
         </h1>
@@ -140,9 +151,36 @@ function Index() {
             label="linkedin.com/in/hirensheth1"
           />
         </ul>
+
+        <div className="mt-10 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+          <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-chart-4/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-chart-2/70" />
+            <span className="ml-3 font-[family-name:var(--font-mono)] text-xs text-muted-foreground">
+              hiren@prod — zsh
+            </span>
+          </div>
+          <div className="space-y-1.5 px-4 py-4 font-[family-name:var(--font-mono)] text-[0.82rem] leading-relaxed">
+            {terminalLines.map((line, i) => (
+              <p key={line.text} className="term-line" style={{ animationDelay: `${0.6 + i * 1.1}s` }}>
+                {line.prompt ? (
+                  <span className="text-primary">➜&nbsp;</span>
+                ) : (
+                  <span className="text-muted-foreground">{line.text}</span>
+                )}
+                {line.prompt && <span className="text-foreground">{line.text}</span>}
+              </p>
+            ))}
+            <p>
+              <span className="text-primary">➜&nbsp;</span>
+              <span className="caret-blink inline-block h-4 w-2 translate-y-0.5 bg-primary" />
+            </p>
+          </div>
+        </div>
       </header>
 
-      <section className="grid grid-cols-2 gap-px border-b border-border bg-border sm:grid-cols-4">
+      <section className="rise grid grid-cols-2 gap-px border-b border-border bg-border sm:grid-cols-4" style={{ animationDelay: "0.15s" }}>
         {stats.map((s) => (
           <div key={s.label} className="bg-background px-1 py-7">
             <p className="font-[family-name:var(--font-display)] text-3xl text-foreground">
@@ -153,10 +191,14 @@ function Index() {
         ))}
       </section>
 
-      <Section title="Experience">
+      <Section title="Experience" delay={0.25}>
         <ol className="space-y-10">
-          {experience.map((job) => (
-            <li key={job.company} className="relative pl-5">
+          {experience.map((job, i) => (
+            <li
+              key={job.company}
+              className="rise relative pl-5"
+              style={{ animationDelay: `${0.3 + i * 0.12}s` }}
+            >
               <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-primary" />
               <div className="flex flex-wrap items-baseline justify-between gap-x-4">
                 <h3 className="font-[family-name:var(--font-display)] text-2xl text-foreground">
@@ -179,7 +221,7 @@ function Index() {
         </ol>
       </Section>
 
-      <Section title="Core competencies">
+      <Section title="Core competencies" delay={0.35}>
         <ul className="flex flex-wrap gap-2">
           {competencies.map((c) => (
             <li
@@ -192,7 +234,7 @@ function Index() {
         </ul>
       </Section>
 
-      <Section title="Skills">
+      <Section title="Skills" delay={0.4}>
         <dl className="divide-y divide-border border-y border-border">
           {skills.map((s) => (
             <div key={s.label} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
@@ -203,7 +245,7 @@ function Index() {
         </dl>
       </Section>
 
-      <Section title="Education">
+      <Section title="Education" delay={0.45}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4">
           <h3 className="font-[family-name:var(--font-display)] text-2xl text-foreground">
             B.E. Computer Science
@@ -230,9 +272,17 @@ function Index() {
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  delay = 0,
+  children,
+}: {
+  title: string;
+  delay?: number;
+  children: React.ReactNode;
+}) {
   return (
-    <section className="mt-16">
+    <section className="rise mt-16" style={{ animationDelay: `${delay}s` }}>
       <h2 className="rule-label mb-6">{title}</h2>
       {children}
     </section>
