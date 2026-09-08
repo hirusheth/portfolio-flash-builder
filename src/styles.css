@@ -63,25 +63,25 @@
 
 :root {
   --radius: 0.25rem;
-  --background: oklch(0.972 0.014 84);
-  --foreground: oklch(0.24 0.02 60);
-  --card: oklch(0.985 0.009 84);
-  --card-foreground: oklch(0.24 0.02 60);
-  --popover: oklch(0.985 0.009 84);
-  --popover-foreground: oklch(0.24 0.02 60);
-  --primary: oklch(0.52 0.14 42);
-  --primary-foreground: oklch(0.98 0.01 84);
-  --secondary: oklch(0.93 0.02 84);
-  --secondary-foreground: oklch(0.32 0.03 60);
-  --muted: oklch(0.94 0.015 84);
-  --muted-foreground: oklch(0.52 0.02 60);
-  --accent: oklch(0.88 0.05 130);
-  --accent-foreground: oklch(0.28 0.04 130);
+  --background: oklch(0.975 0.006 205);
+  --foreground: oklch(0.205 0.018 225);
+  --card: oklch(0.995 0.003 205);
+  --card-foreground: oklch(0.205 0.018 225);
+  --popover: oklch(0.995 0.003 205);
+  --popover-foreground: oklch(0.205 0.018 225);
+  --primary: oklch(0.56 0.12 210);
+  --primary-foreground: oklch(0.99 0.004 205);
+  --secondary: oklch(0.92 0.018 205);
+  --secondary-foreground: oklch(0.26 0.025 225);
+  --muted: oklch(0.94 0.012 205);
+  --muted-foreground: oklch(0.48 0.025 225);
+  --accent: oklch(0.69 0.18 35);
+  --accent-foreground: oklch(0.2 0.02 225);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.87 0.02 78);
-  --input: oklch(0.87 0.02 78);
-  --ring: oklch(0.52 0.14 42);
+  --border: oklch(0.84 0.025 205);
+  --input: oklch(0.84 0.025 205);
+  --ring: oklch(0.56 0.12 210);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -240,6 +240,108 @@
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
+/* --- interactive career path --- */
+
+.journey-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.journey-track {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.journey-line,
+.journey-progress {
+  position: absolute;
+  left: 1.25rem;
+  top: 1.25rem;
+  width: 2px;
+}
+
+.journey-line {
+  bottom: 1.25rem;
+  background: var(--border);
+}
+
+.journey-progress {
+  background: var(--primary);
+  transition: height 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.journey-stop {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.7rem 0.75rem 0.7rem 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.journey-stop:hover,
+.journey-stop:focus-visible {
+  background: var(--muted);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.journey-stop:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.journey-node {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.journey-stop.is-active .journey-node {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  transform: scale(1.08);
+}
+
+.journey-detail {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--primary);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  padding: 1.5rem;
+  box-shadow: 8px 8px 0 var(--secondary);
+}
+
+@media (min-width: 768px) {
+  .journey-shell {
+    grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+    align-items: start;
+    gap: 2.5rem;
+  }
+
+  .journey-detail {
+    position: sticky;
+    top: 2rem;
+    min-height: 25rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .term-line {
     animation: none;
@@ -247,7 +349,14 @@
   }
   .rise,
   .dot-grid,
-  .pulse-live {
+  .pulse-live,
+  .journey-detail {
     animation: none;
+  }
+
+  .journey-progress,
+  .journey-stop,
+  .journey-node {
+    transition: none;
   }
 }
