@@ -151,9 +151,36 @@ function Index() {
             label="linkedin.com/in/hirensheth1"
           />
         </ul>
+
+        <div className="mt-10 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+          <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-chart-4/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-chart-2/70" />
+            <span className="ml-3 font-[family-name:var(--font-mono)] text-xs text-muted-foreground">
+              hiren@prod — zsh
+            </span>
+          </div>
+          <div className="space-y-1.5 px-4 py-4 font-[family-name:var(--font-mono)] text-[0.82rem] leading-relaxed">
+            {terminalLines.map((line, i) => (
+              <p key={line.text} className="term-line" style={{ animationDelay: `${0.6 + i * 1.1}s` }}>
+                {line.prompt ? (
+                  <span className="text-primary">➜&nbsp;</span>
+                ) : (
+                  <span className="text-muted-foreground">{line.text}</span>
+                )}
+                {line.prompt && <span className="text-foreground">{line.text}</span>}
+              </p>
+            ))}
+            <p>
+              <span className="text-primary">➜&nbsp;</span>
+              <span className="caret-blink inline-block h-4 w-2 translate-y-0.5 bg-primary" />
+            </p>
+          </div>
+        </div>
       </header>
 
-      <section className="grid grid-cols-2 gap-px border-b border-border bg-border sm:grid-cols-4">
+      <section className="rise grid grid-cols-2 gap-px border-b border-border bg-border sm:grid-cols-4" style={{ animationDelay: "0.15s" }}>
         {stats.map((s) => (
           <div key={s.label} className="bg-background px-1 py-7">
             <p className="font-[family-name:var(--font-display)] text-3xl text-foreground">
