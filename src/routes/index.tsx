@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -122,6 +123,11 @@ const terminalLines = [
 ];
 
 function Index() {
+  const [activeExperience, setActiveExperience] = useState(0);
+  const activeJob = experience[activeExperience];
+
+  if (!activeJob) return null;
+
   return (
     <main className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 sm:px-8 md:pt-24">
       <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[26rem]" aria-hidden />
@@ -191,34 +197,60 @@ function Index() {
         ))}
       </section>
 
-      <Section title="Experience" delay={0.25}>
-        <ol className="space-y-10">
-          {experience.map((job, i) => (
-            <li
-              key={job.company}
-              className="rise relative pl-5"
-              style={{ animationDelay: `${0.3 + i * 0.12}s` }}
-            >
-              <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-primary" />
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="font-[family-name:var(--font-display)] text-2xl text-foreground">
-                  {job.role}
+      <Section title="Career journey" delay={0.25}>
+        <div className="journey-shell">
+          <div className="journey-track" aria-label="Career timeline">
+            <span className="journey-line" aria-hidden />
+            <span
+              className="journey-progress"
+              style={{ height: `${(activeExperience / (experience.length - 1)) * 100}%` }}
+              aria-hidden
+            />
+            {experience.map((job, i) => (
+              <button
+                key={job.company}
+                type="button"
+                className={`journey-stop ${i === activeExperience ? "is-active" : ""}`}
+                onClick={() => setActiveExperience(i)}
+                aria-pressed={i === activeExperience}
+                aria-label={`View ${job.role} at ${job.company}`}
+              >
+                <span className="journey-node" aria-hidden>
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                </span>
+                <span className="min-w-0 text-left">
+                  <span className="block text-xs text-muted-foreground">{job.period}</span>
+                  <span className="mt-1 block font-[family-name:var(--font-display)] text-lg leading-tight text-foreground">
+                    {job.company}
+                  </span>
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <article key={activeJob.company} className="journey-detail animate-fade-in">
+            <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
+              <div>
+                <p className="rule-label text-primary">Selected milestone</p>
+                <h3 className="mt-2 font-[family-name:var(--font-display)] text-3xl leading-tight text-foreground">
+                  {activeJob.role}
                 </h3>
-                <span className="rule-label">{job.period}</span>
+                <p className="mt-1 text-sm text-primary">{activeJob.company}</p>
               </div>
-              <p className="mt-1 text-sm text-primary">
-                {job.company} · <span className="text-muted-foreground">{job.place}</span>
-              </p>
-              <ul className="mt-4 space-y-2 text-[0.95rem] leading-relaxed text-muted-foreground">
-                {job.points.map((p) => (
-                  <li key={p} className="before:mr-2 before:text-border before:content-['—']">
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
+              <span className="rounded-sm border border-border bg-muted px-3 py-2 font-[family-name:var(--font-mono)] text-xs text-muted-foreground">
+                {activeJob.place}
+              </span>
+            </div>
+            <ul className="mt-5 space-y-3 text-[0.95rem] leading-relaxed text-muted-foreground">
+              {activeJob.points.map((point) => (
+                <li key={point} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
       </Section>
 
       <Section title="Core competencies" delay={0.35}>
