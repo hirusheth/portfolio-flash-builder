@@ -1,20 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  ArrowUpRight,
+  Braces,
+  Cloud,
+  Cpu,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Server,
+} from "lucide-react";
 import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hiren Sheth — Principal Software Engineer & Architect" },
+      { title: "Hiren Sheth — Principal Software Engineer" },
       {
         name: "description",
         content:
-          "Hiren Sheth, Principal Software Engineer in Hyderabad with 10+ years building scalable Java, cloud, and AI platforms.",
+          "Hiren Sheth is a Principal Software Engineer building scalable Java, cloud, and AI platforms.",
       },
-      { property: "og:title", content: "Hiren Sheth — Principal Software Engineer & Architect" },
+      { property: "og:title", content: "Hiren Sheth — Principal Software Engineer" },
       {
         property: "og:description",
-        content:
-          "10+ years designing and modernizing distributed systems across Java, Spring Boot, AWS, and AI platforms.",
+        content: "Software architecture, distributed systems, cloud, and AI platforms at scale.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -23,51 +35,30 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const competencies = [
-  "Software Architecture",
-  "Distributed Systems",
-  "Microservices",
-  "Technical Strategy",
-  "Engineering Leadership",
-  "System Modernization",
-  "Cloud Architecture",
-  "Generative AI",
-  "Agentic AI Workflows",
-  "Serverless",
-  "Platform Engineering",
-  "Multi-Region Architecture",
-  "Scalability & Reliability",
-  "AWS Cost Optimization",
-  "Infrastructure as Code",
-  "Production Observability",
-  "API & Third-Party Integrations",
-  "Technical Mentoring",
-  "Cross-Functional Leadership",
-  "Agile Delivery",
-];
-
 const experience = [
   {
     role: "Principal Software Engineer",
     company: "CognitiveBotics",
     period: "Mar 2024 — Present",
     place: "Hyderabad, India",
+    code: "CB-04",
     points: [
-      "Own architectural direction and engineering execution for a 12-member team, partnering with the Founder, CTO and CBOs on technical strategy and delivery.",
-      "Architected and evolved a Java and Spring Boot microservices platform deployed across 4 regional brands.",
-      "Designed a Spring Cloud Config-driven architecture so a single codebase supports multiple brands, regional configurations and feature variations.",
-      "Led decisions across backend services, cloud infrastructure, AI workloads, scalability and operations.",
+      "Own architectural direction and engineering execution for a 12-member team, partnering with the Founder, CTO and CBOs.",
+      "Architected a Java and Spring Boot microservices platform deployed across four regional brands.",
+      "Designed a configuration-driven architecture so one codebase supports multiple brands, regions and feature variations.",
+      "Lead decisions across backend services, cloud infrastructure, AI workloads, scalability and operations.",
     ],
   },
   {
     role: "Senior Software Engineer",
-    company: "Aura (offshore engagement)",
+    company: "Aura",
     period: "Mar 2021 — Feb 2022",
     place: "Remote, India",
+    code: "AU-03",
     points: [
       "Collaborated with an offshore team on a serverless product supporting Aura.com.",
       "Designed and implemented serverless functions powering back-office workflows.",
-      "Built Terraform-based infrastructure and deployment workflows for consistent, repeatable provisioning.",
+      "Built Terraform infrastructure and deployment workflows for repeatable provisioning.",
       "Introduced a unit-testing framework to lift coverage and reduce regression risk.",
     ],
   },
@@ -76,9 +67,10 @@ const experience = [
     company: "byPeople Technologies",
     period: "May 2015 — Aug 2020",
     place: "Ahmedabad, India",
+    code: "BP-02",
     points: [
       "Built full-stack applications with Java, Spring Boot, Node.js, Angular and MongoDB.",
-      "Sole developer on an MVP for a translation-based AI system; team lead for an online ticket-booking platform.",
+      "Sole developer on an AI translation MVP; team lead for an online ticket-booking platform.",
       "Worked in Scrum, deploying to Linux environments with Jenkins-based continuous deployment.",
     ],
   },
@@ -87,39 +79,25 @@ const experience = [
     company: "ICT Infracon",
     period: "Jul 2014 — May 2015",
     place: "GIFT City, India",
+    code: "ICT-01",
     points: [
-      "Built a Java payroll application within a 10-member team, covering leave management, payslips and monthly employee reporting.",
+      "Built a Java payroll application within a 10-member team, covering leave management, payslips and monthly reporting.",
     ],
   },
 ];
 
-const skills = [
-  {
-    label: "Languages & Frameworks",
-    items: "Java, Spring Boot, Spring Cloud Config, Node.js, Angular, Next.js, HTML, Bootstrap",
-  },
-  { label: "Cloud & AI", items: "AWS ECS, EC2, SageMaker, Bedrock, CloudFront, CloudWatch" },
-  {
-    label: "Architecture",
-    items: "Microservices, Serverless, Multi-Region Platforms, Configuration-Driven Architecture",
-  },
-  { label: "Infrastructure & DevOps", items: "Terraform, Jenkins, Linux, Maven, NPM, Git" },
-  { label: "Data & Observability", items: "MongoDB, ELK Stack" },
-  { label: "Integrations", items: "Stripe, DocuSign, IRS Electronic Filing" },
+const skillGroups = [
+  { label: "Core", items: ["Java", "Spring Boot", "Node.js", "Angular", "Next.js"] },
+  { label: "Cloud + AI", items: ["AWS", "SageMaker", "Bedrock", "Serverless", "CloudWatch"] },
+  { label: "Systems", items: ["Microservices", "Multi-region", "Terraform", "ELK", "MongoDB"] },
+  { label: "Delivery", items: ["Jenkins", "Linux", "Maven", "Git", "Technical mentoring"] },
 ];
 
 const stats = [
-  { value: "10+", label: "Years building" },
-  { value: "100K+", label: "Customers served" },
-  { value: "100K/day", label: "Peak traffic, zero downtime" },
-  { value: "4", label: "Regional brands, one codebase" },
-];
-
-const terminalLines = [
-  { prompt: true, text: "whoami" },
-  { prompt: false, text: "hiren.sheth — principal engineer" },
-  { prompt: true, text: "deploy --region ap-south --brands 4" },
-  { prompt: false, text: "✓ zero downtime · 100K req/day · live" },
+  { value: "10+", label: "years building" },
+  { value: "100K+", label: "customers served" },
+  { value: "100K", label: "requests / day" },
+  { value: "04", label: "brands · one core" },
 ];
 
 function Index() {
@@ -129,207 +107,137 @@ function Index() {
   if (!activeJob) return null;
 
   return (
-    <main className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 sm:px-8 md:pt-24">
-      <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[26rem]" aria-hidden />
-      <header className="rise border-b border-border pb-12">
-        <div className="flex items-center gap-2">
-          <span className="pulse-live inline-block h-2 w-2 rounded-full bg-primary" />
-          <p className="rule-label">Hyderabad, India · systems online</p>
-        </div>
-        <h1 className="mt-5 font-[family-name:var(--font-display)] text-5xl leading-[0.95] tracking-tight text-foreground sm:text-7xl">
-          Hiren Sheth
-        </h1>
-        <p className="mt-4 max-w-xl font-[family-name:var(--font-display)] text-xl italic text-primary sm:text-2xl">
-          Principal Software Engineer — software architecture, cloud &amp; AI platforms.
-        </p>
-        <p className="mt-6 max-w-2xl text-[0.98rem] leading-relaxed text-muted-foreground">
-          10+ years designing, building, modernizing and operating scalable platforms across Java,
-          Spring Boot, microservices, serverless, cloud, frontend and AI ecosystems. I own
-          architectural direction, lead engineering teams, and keep production systems calm at
-          scale — multi-region and multi-brand architecture, generative and agentic AI workflows,
-          cloud cost optimization, and deep observability.
-        </p>
-        <ul className="mt-8 flex flex-wrap gap-x-3 gap-y-2 text-sm">
-          <ContactLink href="mailto:shethhiren93@gmail.com" label="shethhiren93@gmail.com" />
-          <ContactLink href="tel:+919722825095" label="+91 97228 25095" />
-          <ContactLink
-            href="https://linkedin.com/in/hirensheth1"
-            label="linkedin.com/in/hirensheth1"
-          />
-        </ul>
-
-        <div className="mt-10 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
-          <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-chart-4/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-chart-2/70" />
-            <span className="ml-3 font-[family-name:var(--font-mono)] text-xs text-muted-foreground">
-              hiren@prod — zsh
-            </span>
-          </div>
-          <div className="space-y-1.5 px-4 py-4 font-[family-name:var(--font-mono)] text-[0.82rem] leading-relaxed">
-            {terminalLines.map((line, i) => (
-              <p key={line.text} className="term-line" style={{ animationDelay: `${0.6 + i * 1.1}s` }}>
-                {line.prompt ? (
-                  <span className="text-primary">➜&nbsp;</span>
-                ) : (
-                  <span className="text-muted-foreground">{line.text}</span>
-                )}
-                {line.prompt && <span className="text-foreground">{line.text}</span>}
-              </p>
-            ))}
-            <p>
-              <span className="text-primary">➜&nbsp;</span>
-              <span className="caret-blink inline-block h-4 w-2 translate-y-0.5 bg-primary" />
-            </p>
-          </div>
-        </div>
-      </header>
-
-      <section className="rise grid grid-cols-2 gap-px border-b border-border bg-border sm:grid-cols-4" style={{ animationDelay: "0.15s" }}>
-        {stats.map((s) => (
-          <div key={s.label} className="bg-background px-1 py-7">
-            <p className="font-[family-name:var(--font-display)] text-3xl text-foreground">
-              {s.value}
-            </p>
-            <p className="mt-1 text-xs leading-snug text-muted-foreground">{s.label}</p>
-          </div>
-        ))}
-      </section>
-
-      <Section title="Career journey" delay={0.25}>
-        <div className="journey-shell">
-          <div className="journey-track" aria-label="Career timeline">
-            <span className="journey-line" aria-hidden />
-            <span
-              className="journey-progress"
-              style={{ height: `${(activeExperience / (experience.length - 1)) * 100}%` }}
-              aria-hidden
-            />
-            {experience.map((job, i) => (
-              <button
-                key={job.company}
-                type="button"
-                className={`journey-stop ${i === activeExperience ? "is-active" : ""}`}
-                onClick={() => setActiveExperience(i)}
-                aria-pressed={i === activeExperience}
-                aria-label={`View ${job.role} at ${job.company}`}
-              >
-                <span className="journey-node" aria-hidden>
-                  <span>{String(i + 1).padStart(2, "0")}</span>
-                </span>
-                <span className="min-w-0 text-left">
-                  <span className="block text-xs text-muted-foreground">{job.period}</span>
-                  <span className="mt-1 block font-[family-name:var(--font-display)] text-lg leading-tight text-foreground">
-                    {job.company}
-                  </span>
-                </span>
-              </button>
-            ))}
-          </div>
-
-          <article key={activeJob.company} className="journey-detail animate-fade-in">
-            <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
-              <div>
-                <p className="rule-label text-primary">Selected milestone</p>
-                <h3 className="mt-2 font-[family-name:var(--font-display)] text-3xl leading-tight text-foreground">
-                  {activeJob.role}
-                </h3>
-                <p className="mt-1 text-sm text-primary">{activeJob.company}</p>
-              </div>
-              <span className="rounded-sm border border-border bg-muted px-3 py-2 font-[family-name:var(--font-mono)] text-xs text-muted-foreground">
-                {activeJob.place}
-              </span>
-            </div>
-            <ul className="mt-5 space-y-3 text-[0.95rem] leading-relaxed text-muted-foreground">
-              {activeJob.points.map((point) => (
-                <li key={point} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        </div>
-      </Section>
-
-      <Section title="Core competencies" delay={0.35}>
-        <ul className="flex flex-wrap gap-2">
-          {competencies.map((c) => (
-            <li
-              key={c}
-              className="rounded-full border border-border px-3 py-1.5 text-sm text-secondary-foreground transition-colors hover:border-primary hover:text-primary"
-            >
-              {c}
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section title="Skills" delay={0.4}>
-        <dl className="divide-y divide-border border-y border-border">
-          {skills.map((s) => (
-            <div key={s.label} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
-              <dt className="rule-label pt-1">{s.label}</dt>
-              <dd className="text-[0.95rem] leading-relaxed text-foreground">{s.items}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
-
-      <Section title="Education" delay={0.45}>
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-          <h3 className="font-[family-name:var(--font-display)] text-2xl text-foreground">
-            B.E. Computer Science
-          </h3>
-          <span className="rule-label">2010 — 2014</span>
-        </div>
-        <p className="mt-1 text-sm text-muted-foreground">Gujarat Technological University</p>
-      </Section>
-
-      <footer className="mt-20 border-t border-border pt-8 text-sm text-muted-foreground">
-        <p className="font-[family-name:var(--font-display)] text-xl italic text-foreground">
-          Let&rsquo;s talk architecture.
-        </p>
-        <p className="mt-2">
-          <a
-            href="mailto:shethhiren93@gmail.com"
-            className="text-primary underline underline-offset-4"
-          >
-            shethhiren93@gmail.com
+    <main className="site-grid min-h-screen px-4 py-4 sm:px-6 sm:py-6">
+      <div className="mx-auto max-w-7xl">
+        <nav className="mb-4 flex items-center justify-between rounded-md border border-border bg-background/90 px-4 py-3 backdrop-blur">
+          <a href="#top" className="flex items-center gap-3" aria-label="Hiren Sheth, home">
+            <span className="grid h-8 w-8 place-items-center rounded-sm bg-primary font-[family-name:var(--font-mono)] text-xs font-bold text-primary-foreground">HS</span>
+            <span className="hidden text-sm font-semibold text-foreground sm:block">Hiren Sheth</span>
           </a>
-        </p>
-      </footer>
+          <div className="flex items-center gap-2">
+            <span className="status-dot" aria-hidden />
+            <span className="font-[family-name:var(--font-mono)] text-[0.68rem] uppercase text-muted-foreground">Available for ambitious systems</span>
+          </div>
+        </nav>
+
+        <div id="top" className="bento-grid">
+          <section className="panel hero-panel rise">
+            <p className="eyebrow">Principal engineer · architect · builder</p>
+            <h1 className="mt-8 max-w-4xl text-5xl font-semibold leading-[0.96] text-foreground sm:text-7xl lg:text-[5.7rem]">
+              I design systems that stay <span className="text-primary">calm at scale.</span>
+            </h1>
+            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              I&rsquo;m Hiren Sheth, a software architect with 10+ years across distributed Java platforms, cloud infrastructure and production AI. I turn complex requirements into resilient systems and focused engineering teams.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <a href="mailto:shethhiren93@gmail.com"><Mail /> Start a conversation</a>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href="https://linkedin.com/in/hirensheth1" target="_blank" rel="noreferrer"><Linkedin /> LinkedIn <ArrowUpRight /></a>
+              </Button>
+            </div>
+          </section>
+
+          <aside className="panel signal-panel rise" aria-label="System profile">
+            <div className="orbit" aria-hidden>
+              <span className="orbit-ring orbit-ring-one" />
+              <span className="orbit-ring orbit-ring-two" />
+              <span className="orbit-core"><Cpu /></span>
+              <span className="orbit-node node-one"><Server /></span>
+              <span className="orbit-node node-two"><Cloud /></span>
+              <span className="orbit-node node-three"><Braces /></span>
+            </div>
+            <div className="mt-auto border-t border-border pt-5">
+              <p className="eyebrow text-primary">Current focus</p>
+              <p className="mt-2 text-xl font-semibold text-foreground">Cloud + AI platforms</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Architecture direction, engineering leadership, multi-region reliability.</p>
+            </div>
+          </aside>
+
+          <section className="panel stats-panel rise" aria-label="Career highlights">
+            {stats.map((stat) => (
+              <div key={stat.label} className="stat-cell">
+                <p className="font-[family-name:var(--font-mono)] text-3xl font-medium text-foreground">{stat.value}</p>
+                <p className="mt-1 text-xs uppercase text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </section>
+
+          <section className="panel journey-panel rise">
+            <div className="section-heading">
+              <div><p className="eyebrow">Career topology</p><h2>Journey through the stack</h2></div>
+              <span className="font-[family-name:var(--font-mono)] text-xs text-muted-foreground">2014 → NOW</span>
+            </div>
+            <div className="journey-shell">
+              <div className="journey-track" aria-label="Career timeline">
+                <span className="journey-line" aria-hidden />
+                <span className="journey-progress" style={{ height: `${(activeExperience / (experience.length - 1)) * 100}%` }} aria-hidden />
+                {experience.map((job, index) => (
+                  <Button
+                    key={job.company}
+                    type="button"
+                    variant="ghost"
+                    className={`journey-stop ${index === activeExperience ? "is-active" : ""}`}
+                    onClick={() => setActiveExperience(index)}
+                    aria-pressed={index === activeExperience}
+                  >
+                    <span className="journey-node">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="min-w-0 text-left">
+                      <span className="block text-[0.65rem] uppercase text-muted-foreground">{job.period}</span>
+                      <span className="mt-1 block truncate text-sm font-semibold text-foreground">{job.company}</span>
+                    </span>
+                  </Button>
+                ))}
+              </div>
+              <article key={activeJob.company} className="journey-detail animate-fade-in">
+                <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
+                  <div><p className="eyebrow text-primary">{activeJob.code} · selected node</p><h3 className="mt-2 text-3xl font-semibold leading-tight text-foreground">{activeJob.role}</h3><p className="mt-1 text-sm text-primary">{activeJob.company}</p></div>
+                  <span className="inline-flex items-center gap-2 rounded-sm border border-border px-3 py-2 font-[family-name:var(--font-mono)] text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5" />{activeJob.place}</span>
+                </div>
+                <ul className="mt-5 grid gap-3 text-sm leading-relaxed text-muted-foreground">
+                  {activeJob.points.map((point) => <li key={point} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 bg-primary" />{point}</li>)}
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section className="panel stack-panel rise">
+            <div className="section-heading"><div><p className="eyebrow">Technical inventory</p><h2>Stack &amp; tools</h2></div><Braces className="text-primary" /></div>
+            <div className="mt-8 grid gap-7 sm:grid-cols-2">
+              {skillGroups.map((group) => (
+                <div key={group.label}>
+                  <p className="mb-3 font-[family-name:var(--font-mono)] text-[0.65rem] uppercase text-muted-foreground">// {group.label}</p>
+                  <ul className="flex flex-wrap gap-2">{group.items.map((item) => <li key={item} className="tech-pill">{item}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="panel contact-panel rise">
+            <div>
+              <p className="eyebrow text-primary">Open channel</p>
+              <h2 className="mt-3 text-3xl font-semibold text-foreground">Let&rsquo;s build the system behind the idea.</h2>
+            </div>
+            <div className="mt-10 space-y-3 text-sm">
+              <a className="contact-row" href="mailto:shethhiren93@gmail.com"><Mail /> shethhiren93@gmail.com</a>
+              <a className="contact-row" href="tel:+919722825095"><Phone /> +91 97228 25095</a>
+              <span className="contact-row"><MapPin /> Hyderabad, India</span>
+            </div>
+          </section>
+
+          <section className="panel education-panel rise">
+            <p className="eyebrow">Education</p>
+            <p className="mt-5 text-2xl font-semibold text-foreground">B.E. Computer Science</p>
+            <p className="mt-2 text-sm text-muted-foreground">Gujarat Technological University</p>
+            <p className="mt-8 font-[family-name:var(--font-mono)] text-xs text-primary">2010 — 2014</p>
+          </section>
+        </div>
+
+        <footer className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-md border border-border bg-background/90 px-4 py-4 text-xs text-muted-foreground">
+          <p>© 2026 Hiren Sheth</p><p className="font-[family-name:var(--font-mono)]">BUILDING RELIABLE THINGS · HYDERABAD</p>
+        </footer>
+      </div>
     </main>
-  );
-}
-
-function Section({
-  title,
-  delay = 0,
-  children,
-}: {
-  title: string;
-  delay?: number;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="rise mt-16" style={{ animationDelay: `${delay}s` }}>
-      <h2 className="rule-label mb-6">{title}</h2>
-      {children}
-    </section>
-  );
-}
-
-function ContactLink({ href, label }: { href: string; label: string }) {
-  return (
-    <li>
-      <a
-        href={href}
-        className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
-      >
-        {label}
-      </a>
-    </li>
   );
 }
